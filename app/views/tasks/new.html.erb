@@ -1,10 +1,10 @@
 <div class="container px-5 px-sm-0 mt-3">
 
   <h2 class="text-center mt-3 mb-5">タスク登録</h2>
-  
+
   <div class="form">
     <%= form_with model:@task,local:true do |f| %>
-    
+
       <div class="form-group">
         <h5 for="task_name">タスク名</h5>
         <%= f.text_field :task_name, class: "form-control task_name" %>
@@ -16,7 +16,7 @@
       <div class="form-group">
             <%= f.submit "登録する", class: "btn btn-outline-success" %>
       </div>
-      
+
     <% end %>
   </div>
 

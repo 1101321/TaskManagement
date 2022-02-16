@@ -10,11 +10,15 @@
   </head>
 
   <body>
-    
+
     <li>
       <%= link_to "タスク登録", new_task_path %>
     </li>
-    
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
