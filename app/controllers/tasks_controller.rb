@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to task_path(@task.id), notice: "タスク「#{@task.task_name}」を登録しました！"
     else
-      render :new
+      redirect_to new_task_path, alert: 'タスクを登録出来ませんでした'
     end
   end
 
@@ -30,14 +30,17 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to task_path(@task.id), notice: "タスク「#{@task.task_name}」を更新しました！"
     else
-      render :edit
+      redirect_to edit_task_path(@task.id), alert: 'タスクを更新出来ませんでした'
     end
   end
 
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy
-    redirect_to tasks_path, notice: "タスク「#{@task.task_name}」を削除しました！"
+    if @task.destroy
+      redirect_to tasks_path, notice: "タスク「#{@task.task_name}」を削除しました！"
+    else
+      redirect_to tasks_path, alert: 'タスクを削除出来ませんでした'
+    end
   end
 
 
