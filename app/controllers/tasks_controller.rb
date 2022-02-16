@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = Tasks.new(task_params)
     if @task.save
       redirect_to task_path(@task.id), notice: "タスク「#{@task.task_name}」を登録しました！"
     else

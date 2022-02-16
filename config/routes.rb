@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   
   root to: 'tasks#index'
   resources :tasks
-  resources :users, only: [:show, :edit, :update]
   get '/sign_up' => 'users#new'
   post '/sign_up' => 'users#create'
+  resources :users, only: [:edit, :update]
   
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
