@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to root_path, notice: "ユーザー情報を更新しました！"
     else
-      redirect_to edit_user_path(current_user.id), alert: 'ユーザー情報を更新出来ませんでした'
+      redirect_to edit_user_path(current_user.id), alert: "ユーザー情報を更新出来ませんでした"
     end
   end
 

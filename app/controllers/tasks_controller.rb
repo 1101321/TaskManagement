@@ -2,14 +2,17 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @user = current_user
   end
 
   def create
-    @task = Tasks.new(task_params)
+    @task = Task.new(task_params)
+    @task.user_id = current_user.id
+    @user = current_user
     if @task.save
       redirect_to task_path(@task.id), notice: "タスク「#{@task.task_name}」を登録しました！"
     else
-      redirect_to new_task_path, alert: 'タスクを登録出来ませんでした'
+      redirect_to new_task_path, alert: "タスクを登録出来ませんでした"
     end
   end
 
@@ -30,16 +33,16 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to task_path(@task.id), notice: "タスク「#{@task.task_name}」を更新しました！"
     else
-      redirect_to edit_task_path(@task.id), alert: 'タスクを更新出来ませんでした'
+      redirect_to edit_task_path(@task.id), alert: "タスクを更新出来ませんでした"
     end
   end
 
   def destroy
     @task = Task.find(params[:id])
     if @task.destroy
-      redirect_to tasks_path, notice: "タスク「#{@task.task_name}」を削除しました！"
+      redirect_to tasks_path, notice: "タスク「#{@task.task_name}」を達成しました！"
     else
-      redirect_to tasks_path, alert: 'タスクを削除出来ませんでした'
+      redirect_to tasks_path, alert: "タスクを削除出来ませんでした"
     end
   end
 
